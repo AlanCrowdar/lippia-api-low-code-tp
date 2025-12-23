@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Dummy Suite">
+    <test name="Dummy Test">
+        <classes>
+            <!-- No definimos clases -->
+        </classes>
+    </test>
+</suite>

@@ -20,7 +20,7 @@
         <base.api.url>https://rickandmortyapi.com/api</base.api.url>
         <cucumber.stepsDefinitions>--glue io/lippia/api/lowcode/steps --glue ar/steps</cucumber.stepsDefinitions>
         <cucumber.hooks>--glue com/crowdar/bdd/cukes --glue ar/apiExampleProject/hook</cucumber.hooks>
-		<cucumber.tags>@petstore</cucumber.tags>
+        <cucumber.tags>@tp</cucumber.tags>
         <crowdar.cucumber.plugins>--plugin pretty --plugin com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter: --plugin com.crowdar.examples.listeners.CucumberListener:</crowdar.cucumber.plugins>
         <crowdar.reporter.avent>true</crowdar.reporter.avent>
         <crowdar.extent.host.name>LocalMachine</crowdar.extent.host.name>
@@ -32,24 +32,6 @@
         <crowdar.projectType>API</crowdar.projectType>
         <environment></environment>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>Secuencial</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <apiExample.runner>testngSecuencial.xml</apiExample.runner>
-            </properties>
-        </profile>
-        <profile>
-            <id>Paralelo</id>
-            <properties>
-                <apiExample.runner>testngParalell.xml</apiExample.runner>
-            </properties>
-        </profile>
-    </profiles>
 
     <dependencies>
         <dependency>
@@ -109,33 +91,21 @@
 
     </dependencies>
     <build>
-        <filters>
-            <filter>src/main/resources/cucumber.properties</filter>
-        </filters>
         <plugins>
             <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M4</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M4</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${apiExample.runner}</suiteXmlFile>
-                    </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <TEST_MANAGER_USERNAME></TEST_MANAGER_USERNAME>
-                        <TEST_MANAGER_PASSWORD></TEST_MANAGER_PASSWORD>
-                        <TEST_MANAGER_API_HOST></TEST_MANAGER_API_HOST>
-                        <TEST_MANAGER_API_PORT></TEST_MANAGER_API_PORT>
-                        <TEST_MANAGER_RUN_NAME></TEST_MANAGER_RUN_NAME>
-                        <TEST_MANAGER_PROJECT_CODE></TEST_MANAGER_PROJECT_CODE>
-                        <TEST_MANAGER_REPOSITORY_URL></TEST_MANAGER_REPOSITORY_URL>
-                        <TEST_MANAGER_REPOSITORY_BRANCH></TEST_MANAGER_REPOSITORY_BRANCH>
+                        <cucumber.filter.tags>${cucumber.tags}</cucumber.filter.tags>
+                        <environment>${environment}</environment>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-    
+
     <repositories>
 		<repository>
 			<id>central</id>
